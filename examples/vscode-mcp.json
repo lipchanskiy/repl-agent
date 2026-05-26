@@ -1,0 +1,9 @@
+{
+  "servers": {
+    "repl": {
+      "type": "stdio",
+      "command": "repl-agent",
+      "args": ["--mode", "dev", "--launch", "clj -M:dev"]
+    }
+  }
+}

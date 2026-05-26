@@ -1,0 +1,18 @@
+;; repl-agent production policy example.
+;; Use with: repl-agent --mode restricted --port 7889 --config ./prod-policy.edn
+;;
+;; Only expressions whose leading form appears in :allowed-forms are sent to
+;; the REPL. Everything else is rejected before reaching the JVM.
+;; def / defn / ns / require / I-O ops are always blocked regardless of this list.
+
+{:allowed-forms   ["count" "keys" "vals" "class" "type" "meta"
+                   "clojure.core/deref" "clojure.core/realized?"
+                   "clojure.repl/doc" "clojure.repl/source"
+                   "get" "get-in" "select-keys"]
+
+ ;; Maximum timeout for a single eval (ms). Agent-supplied timeout_ms is capped here.
+ :max-timeout-ms  3000
+
+ ;; Write an NDJSON audit log of every eval attempt (ok / blocked / error).
+ :log-all-evals   true
+ :log-path        "/var/log/repl-agent/evals.log"}

@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "repl": {
+      "type": "local",
+      "command": "repl-agent",
+      "args": ["--mode", "dev", "--launch", "clj -M:dev"]
+    }
+  }
+}
